@@ -1,0 +1,18 @@
+------------------------Login page and Sign In page explaination-------------------------
+
+
+1. Login Page:-
+    . When user will come to this site the user will redirect to Home page.
+    . ther user will see on navigation bar 4 buttons 1. Home button, 2. Shoping button, 3. Login btn and 4. is Sign In button
+    . When user will sign in that time data will save in backgend database and retrun value will save in localstorage in 'user' key 
+    . If user select products for buy without login when we will check following condition 
+        . we will check user is login using localstorage data 
+        . If user has not logined still the user will redirect to login page
+        . then the user will sumbit form data will save in database.
+        . After the login user will redirect to shoping page
+    
+2. Sign In Page:-
+    . When user click on sign in button user will redirect to Sign In page.
+    . Then After the Sign in User will redirect to shoping page.
+    . When the user will sumbit form data will save in database.
+
