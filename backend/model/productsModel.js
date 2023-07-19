@@ -1,4 +1,3 @@
-import { urlencoded } from "express";
 import mongoose from "mongoose";
 
 const productSchema = mongoose.Schema({
@@ -19,7 +18,7 @@ const productSchema = mongoose.Schema({
         type: String,
         required: true,
     },
-    userID: {
+    sellerID: {
         type: String,
         require: true
     },

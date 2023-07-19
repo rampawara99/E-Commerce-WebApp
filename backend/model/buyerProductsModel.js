@@ -26,7 +26,10 @@ const Schema = mongoose.Schema({
     imageUrl: {
         type: String
     },
-    itemsID: {
+    itemID: {
+        type: String
+    },
+    sellerID: {
         type: String
     }
 });

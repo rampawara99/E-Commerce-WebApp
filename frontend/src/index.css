@@ -138,3 +138,32 @@ code {
   overflow: hidden;
   margin-top: 45px;
 }
+
+/* Detailcomponents's style ----------------------------------- */
+#buy-loader-icon {
+  width: 30px;
+}
+
+/* AlertMessage from AddToCart style--------------------------- */
+.add-cart-alert-message {
+  width: 100%;
+  position: absolute;
+  top: 10%;
+  left: 0;
+  opacity: 0;
+  text-align: center;
+  transition: all .5s ease;
+}
+
+.add-cart-alert-message span {
+  padding: 15px 30px;
+  font-size: 15px;
+  font-weight: bold;
+  color: #fff;
+  background: green;
+}
+
+.opacity-1-top-20{
+  opacity: 1;
+  top: 25%;
+}

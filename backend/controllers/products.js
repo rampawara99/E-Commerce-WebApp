@@ -1,14 +1,12 @@
-import { json } from "express";
-import ProductModel from "../model/productsModel.js";
-// import { body, validationResult } from 'express-validator';
+import ProductModel from "../model/productsModel.js"; 
 
 
 // Add Product
 export const addProduct = async (req, res) => {
-    const { companyName, productName, price, productDetails, category, userID, imageUrl } = req.body;
+    const { companyName, productName, price, productDetails, category, sellerID, imageUrl } = req.body;
 
     // console.log(req.body);
-    if (!companyName || !productName || !price || !productDetails || !category || !userID || !imageUrl) {
+    if (!companyName || !productName || !price || !productDetails || !category || !sellerID || !imageUrl) {
         return res.status(500).json({ error: "Something is empty, please check the form!" });
     }
     try {
@@ -26,7 +24,7 @@ export const currentSellerProducts = async (req, res) => {
     console.log("current seller: ");
     console.log(req.params);
     try {
-        const response = await ProductModel.find({ userID: req.params._id });
+        const response = await ProductModel.find({ sellerID: req.params._id });
         res.status(200).send(response)
     } catch (err) {
         // console.log("")
@@ -69,6 +67,7 @@ export const productList = async (req, res) => {
     console.log('productList...');
     try {
         const result = await ProductModel.find();
+        // console.log(result)
         res.status(201).json(result);
     } catch (err) {
         res.status(401).json({ message: "Server Problem 401!" });
@@ -97,92 +96,3 @@ export const categoryApi = async (req, res) => {
 };
 
 
-
-
-
-
-
-
-
-
-
-
-
-// // Get Product
-// export const getProducts = async (req, res) => {
-//     const products = await ProductModel.find();
-//     if (products.length > 0) {
-//         res.send(products);
-//     } else {
-//         res.send({ result: "No Products Found!" });
-//     }
-// }
-
-// // Delete reqest for products delete
-// export const deleteProduct = async (req, res) => {
-//     const products = await ProductModel.deleteOne(req.params);
-//     res.send(products);
-// }
-
-// // get request for products update
-// export const getProduct = async (req, res) => {
-//     let products = await ProductModel.find(req.params);
-//     // console.log(products)
-//     if (products.length > 0) {
-//         res.send(products);
-//     } else {
-//         res.send({ result: "No Record Found" });
-//     }
-// }
-
-
-// // get request for products search
-// export const searchProudct = async (req, res) => {
-//     console.log(req.params);
-//     let result = await ProductModel.find({
-//         "$or": [
-//             { name: { $regex: req.params.key } },
-//             { category: { $regex: req.params.key } },
-//             { price: { $regex: req.params.key } },
-//             { company: { $regex: req.params.key } }
-//         ]
-//     })
-//     res.send(result);
-// }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// "$or":[
-        //     {name:{$regex:req.params.key}},
-        //     {category:{$regex:req.params.key}},
-        //     {price:{$regex:req.params.key}},
-        //     {company:{$regex:req.params.key}}
-        // ]

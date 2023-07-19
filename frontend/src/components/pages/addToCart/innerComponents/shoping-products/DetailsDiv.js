@@ -1,14 +1,6 @@
 import React from 'react'
 
-const DetailsDiv = ({data, index, setUserData}) => {
-
-    // click handler, when user will click to remove button that product will remove
-    const removeHandler = (value)=>{
-        // console.log("remove value: ", value);
-        // const filterData = data.filter((elem, ind)=> ind!==value); 
-        // setUserData([...filterData]);
-        // localStorage.setItem('products', JSON.stringify(filterData));
-    }
+const DetailsDiv = ({data, removeHandler}) => {
 
     return (
         <div
@@ -28,7 +20,7 @@ const DetailsDiv = ({data, index, setUserData}) => {
                 <span
                     style={{ cursor: "pointer", fontSize: "12px" }}
                     className='ms-4 cursor-pointer'
-                    onClick={()=>(removeHandler(index))}> REMOVE</span>
+                    onClick={()=>(removeHandler(data._id))}> REMOVE</span>
             </div>
         </div>
     )

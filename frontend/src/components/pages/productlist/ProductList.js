@@ -26,7 +26,7 @@ const ProductList = () => {
 
       // Make HTTP GET request
       const response = await axios.get('http://localhost:5000/product-list');
-
+      // console.log("product list response: ", response)
       // Set the data list state with the response data
       setDataList(response.data);
 

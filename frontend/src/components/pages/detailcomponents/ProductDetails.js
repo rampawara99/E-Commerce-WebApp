@@ -9,7 +9,7 @@ const ProductDetails = () => {
     const location = useLocation();
     const data = location.state;
 
-    console.log("view details: ", data);
+    // console.log("view details: ", data);
 
 
     return (

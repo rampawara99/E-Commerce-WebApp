@@ -1,12 +1,18 @@
 import React, { useState, useEffect } from 'react'
 
 import ProductsContainer from './ProductsContainer'
-import PriceDetailContainer from './PriceDetailContainer' 
+import PriceDetailContainer from './PriceDetailContainer'
+import AlertMessage from './AlertMessage';
 
 const AddToCart = () => {
-    // Use the `useState` hook to create a state variable called `width`,
     // initialized to the current width of the browser window.
     const [width, setWidth] = useState(window.innerWidth);
+
+    // const [alertHandler, setAlertHandler] = useState({
+    //     removeAlert: false,
+    //     saveforlaterAlert: false,
+    //     message: ""
+    // });
 
     // Use the `useEffect` hook to add an event listener for the `resize` event on the `window` object.
     useEffect(() => {
@@ -21,15 +27,15 @@ const AddToCart = () => {
         return () => window.removeEventListener('resize', handleResize);
     }, []);
 
-    // will get width size for responsive ui
 
 
     return (
         <>
+            <AlertMessage />
             <div className='container-xl container-fluid d-flex flex-column-reverse flex-lg-row justify-content-between'>
                 <ProductsContainer width={width} />
                 <PriceDetailContainer width={width} />
-            </div> 
+            </div>
         </>
     )
 }

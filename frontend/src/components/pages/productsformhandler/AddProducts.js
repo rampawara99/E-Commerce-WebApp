@@ -44,14 +44,14 @@ const AddProducts = () => {
         // Use the FileReader API to read the uploaded image file and get its URL path
         const reader = new FileReader();
         reader.readAsDataURL(values.imageUrl);
-        const userId = JSON.parse(localStorage.getItem('user'))._id;
-        console.log("userID: ", userId);
+        const sellerID = JSON.parse(localStorage.getItem('user'))._id; 
+        
         reader.onload = () => {
             // Add the image URL path to the form data object
             const formData = {
                 ...values,
                 imageUrl: reader.result,
-                userID: userId
+                sellerID: sellerID
             };
             console.log("form data: ", formData);
             // Reset the form after submitting it  
