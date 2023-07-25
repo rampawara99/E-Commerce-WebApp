@@ -19,7 +19,6 @@ const DetailsCompiler = ({ data }) => {
     const handleAddToCart = (item) => {
         // extracting login user data fro localStorage
         const isLogin = JSON.parse(localStorage.getItem('user'));
-        
         // adding new properties to the current item object
         item.itemID = item._id;
         item.userID = isLogin._id
@@ -30,10 +29,9 @@ const DetailsCompiler = ({ data }) => {
             // isLoading true when user will click buy button
             setIsLoading(!isloading);
             // post request for add to cart
-            axios.post('http://localhost:5000/add-to-buyer-items', item)
-                .then((res) => {
+           axios.post('http://localhost:5000/add-to-buyer-items', item)
+                .then((res) => { 
                     // it will add true if first it will be false
-                    console.log("resp: ", res)
                     setIsLoading(!isloading);
                     navigate('/addtocart');
                 })
@@ -41,7 +39,7 @@ const DetailsCompiler = ({ data }) => {
                     setIsLoading(!isloading);
                     console.log("err: ", err);
                     navigate('/addtocart');
-                }); 
+                });  
         } else {
             alert("Please first Login or Create a Account!");
         }

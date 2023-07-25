@@ -1,6 +1,6 @@
 import React from 'react'
 
-const DetailsDiv = ({data, removeHandler, saveLaterHandler}) => {
+const Details = ({ data, removeFunc, addToCartFunc }) => {
 
     return (
         <div
@@ -10,21 +10,21 @@ const DetailsDiv = ({data, removeHandler, saveLaterHandler}) => {
             </p>
             <p>
                 <span className='text-muted text-decoration-line-through'>${data.price}</span>
-                <span className='fw-bolder mx-2'>${data.price - (data.price*21/100)}</span>
+                <span className='fw-bolder mx-2'>${data.price - (data.price * 21 / 100)}</span>
                 <span className='small text-success'>21% Off</span>
             </p>
             <div className='fw-bolder mt-5'>
                 <span
                     style={{ cursor: "pointer", fontSize: "12px" }}
                     className='cursor-pointer'
-                    onClick={()=>saveLaterHandler(data)}>SAVE FOR LATER</span>
+                    onClick={() => addToCartFunc(data)}>ADD TO CART</span>
                 <span
                     style={{ cursor: "pointer", fontSize: "12px" }}
                     className='ms-4 cursor-pointer'
-                    onClick={()=>(removeHandler(data))}> REMOVE</span>
+                    onClick={() => (removeFunc(data))}> REMOVE</span>
             </div>
         </div>
     )
 }
 
-export default DetailsDiv
+export default Details

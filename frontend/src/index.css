@@ -116,13 +116,6 @@ code {
   }
 }
 
-@media screen and (max-width: 991px) {
-  #cart-controler {
-    position: absolute !important;
-    right: 100px;
-  }
-}
-
 /* Product List component's style --------------------------- */
 .buy-button {
   border: none;
@@ -147,12 +140,14 @@ code {
 /* AlertMessage from AddToCart style--------------------------- */
 .add-cart-alert-message {
   width: 100%;
-  position: absolute;
-  top: 10%;
+  position: fixed;
   left: 0;
+  bottom: 0px;
   opacity: 0;
-  text-align: center;
+  text-align: left;
   transition: all .5s ease;
+  padding: 0px 112px;
+  z-index: 3;
 }
 
 .add-cart-alert-message span {
@@ -163,7 +158,18 @@ code {
   background: green;
 }
 
-.opacity-1-top-20{
+.opacity-1-top-20 {
   opacity: 1;
-  top: 25%;
+  bottom: 30%;
+}
+
+@media screen and (max-width: 991px) {
+  .add-cart-alert-message {
+    padding: 0 10px;
+  }
+
+  #cart-controler {
+    position: absolute !important;
+    right: 100px;
+  }
 }

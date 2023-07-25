@@ -31,6 +31,9 @@ const Schema = mongoose.Schema({
     },
     sellerID: {
         type: String
+    },
+    saveLater:{
+        type: String
     }
 });
 

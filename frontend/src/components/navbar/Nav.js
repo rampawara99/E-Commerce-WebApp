@@ -4,10 +4,12 @@ import LoginBtn from './LoginBtn'
 import NaveBtns from './NaveBtns'
 import CollapBtn from './CollapBtn'
 import Logo from './Logo'
+import AlertMessage from './AlertMessage'
 
 const Nav = () => {
     return (
         <>
+            <AlertMessage/>
             <nav className="navbar bg-primary navbar-expand-lg" data-bs-theme="dark">
                 <div className="container position-relative">
                     <div className="d-flex">

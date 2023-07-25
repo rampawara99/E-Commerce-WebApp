@@ -1,16 +1,6 @@
-import React from 'react'
-import {useNavigate} from 'react-router-dom';
+import React from 'react' 
 
-const HoverButton = ({data, clickHandler}) => {
-
-    const navigate = useNavigate();
-    // const clickHandler = ()=>{
-    //     const value = { 
-    //         from:"shop",
-    //         ...data
-    //     }
-    //     navigate('/viewdetails',  {state: value});
-    // }
+const HoverButton = ({data, clickHandler}) => { 
 
     return (
         <div 

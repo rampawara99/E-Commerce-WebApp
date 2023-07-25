@@ -1,7 +1,7 @@
 import express from 'express';
 import { getUsers, userSignUp, userLogin } from '../controllers/users.js';
 import { addProduct, deleteItem,productList,categoryApi,updateProudct, currentSellerProducts } from '../controllers/products.js'; 
-import { addToBuyerItems, buyerProducts, IncreaseQuantity, DecreaseQuantity, deteleBuyerItems} from '../controllers/buyerItems.js'; 
+import { addToBuyerItems, buyerProducts, IncreaseQuantity, DecreaseQuantity, deteleBuyerItems, saveLaterProducts, getSaveForLaterItems} from '../controllers/buyerItems.js'; 
 
 const Router = express.Router()
 
@@ -21,11 +21,13 @@ Router.get('/product-list',  productList);
 Router.get('/categorysApi/:key', categoryApi);
 
 // Buyer Items APIs hadler
-Router.post('/add-to-buyer-items', addToBuyerItems);
 Router.get('/buyer-items/:_id', buyerProducts);
+Router.get('/savelater-items/:_id/:key', getSaveForLaterItems);
 Router.put('/increase-items-quantity/:_id', IncreaseQuantity);
 Router.put('/decrease-items-quantity/:_id', DecreaseQuantity);
-Router.delete('/delete-items/:_id', deteleBuyerItems);
+Router.post('/add-to-buyer-items', addToBuyerItems);
+Router.post('/save-later-products', saveLaterProducts);
+Router.delete('/delete-items/:_id/:key', deteleBuyerItems);
 export default Router;
 
 
