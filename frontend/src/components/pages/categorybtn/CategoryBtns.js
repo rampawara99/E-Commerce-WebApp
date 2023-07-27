@@ -5,8 +5,10 @@ import axios from 'axios';
 
 const CategoryBtns = () => {
 
+    // get dispatch function
     const dispatch = useDispatch();
     
+    // get api handler for the update categories
     const apiHanadler = async(key)=>{
         try{
             const result = await axios.get("http://localhost:5000/categorysApi/" + key);

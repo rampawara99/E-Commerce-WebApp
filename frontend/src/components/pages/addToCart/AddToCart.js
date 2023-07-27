@@ -22,7 +22,7 @@ const AddToCart = () => {
 
     return (
         <> 
-            <div className='container-xl container-fluid d-flex flex-column-reverse flex-lg-row justify-content-between'>
+            <div className='container-xl container-fluid d-flex flex-column-reverse flex-lg-row justify-content-between user-select-none'>
                 <ProductsContainer width={width} />
                 <PriceDetailContainer width={width} />
             </div>

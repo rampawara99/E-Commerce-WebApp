@@ -10,8 +10,8 @@ const DetailsDiv = ({data, removeHandler, saveLaterHandler}) => {
             </p>
             <p>
                 <span className='text-muted text-decoration-line-through'>${data.price}</span>
-                <span className='fw-bolder mx-2'>${data.price - (data.price*21/100)}</span>
-                <span className='small text-success'>21% Off</span>
+                <span className='fw-bolder mx-2'>${data.price - (data.price*45/100)}</span>
+                <span className='small text-success'>45% Off</span>
             </p>
             <div className='fw-bolder mt-5'>
                 <span

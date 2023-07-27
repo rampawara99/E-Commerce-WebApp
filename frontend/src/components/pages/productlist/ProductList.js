@@ -26,7 +26,6 @@ const ProductList = () => {
 
       // Make HTTP GET request
       const response = await axios.get('http://localhost:5000/product-list');
-      // console.log("product list response: ", response)
       // Set the data list state with the response data
       setDataList(response.data);
 
@@ -47,16 +46,15 @@ const ProductList = () => {
   useEffect(() => {
     // Run the getProductData function when the component is mounted for handle HTTP Request
     getProductData();
+    // react-hooks/exhaustive-deps
   }, []);
 
-
-
   return (
-    <div className='my-5 container-xl container-fluid'>
+    <div className='my-5 container-xl container-fluid user-select-none'>
       {/* <Carosel /> */}
       <Title name="Shop Now" />
       <CategoryBtns />
-      <CurrenProductList/>
+      <CurrenProductList />
       <h1 className='container-xl container-fluid h4 mb-3 text-primary'>General List :</h1>
       {/* <div className='d-flex flex-wrap justify-content-around'> */}
       <div className='d-flex flex-wrap justify-content-around'>

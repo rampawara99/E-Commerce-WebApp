@@ -1,5 +1,4 @@
-import axios from "axios"
-import { ADD_TO_CART_DATA, ALERT_MESSAGE, BUY_PRODUCTS, CATEGORY_DATA, DELETE_ITEM } from "../type"
+import { ALERT_MESSAGE, BUY_PRODUCTS, CATEGORY_DATA, DELETE_ITEM } from "../type"
 
 // delete data handler action
 export const deleteData = (data) => {
@@ -37,16 +36,4 @@ export const alertMessageAction = (data) => {
         payload: data
     }
 }
-
-// add to cart price details updater function
-export const addToCartUpdater = (id) => {
-    console.log("action: ", id);
-    return {
-        type: ADD_TO_CART_DATA,
-        payload: id
-    }
-
-}
-
-
 

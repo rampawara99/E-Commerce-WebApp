@@ -4,8 +4,8 @@ const initialState = {
     deletesData: {},
     categoryData: [],
     buyProducts: [],
-    alertData:{},
-    addToCartUpdater:{}
+    alertData: {},
+    addToCartUpdater: { total: 0, discountAmount: 0, data: [] }
 };
 
 const reducer = (state = initialState, action) => {
@@ -13,7 +13,7 @@ const reducer = (state = initialState, action) => {
     // console.log(" DL reducer: ", action);
 
     switch (action.type) {
-        case DELETE_ITEM: 
+        case DELETE_ITEM:
             return {
                 ...state,
                 deletesData: action.payload
@@ -24,23 +24,23 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 categoryData: action.payload
             }
-        
-        case BUY_PRODUCTS: 
-            return{
+
+        case BUY_PRODUCTS:
+            return {
                 ...state,
-                buyProducts:action.payload
+                buyProducts: action.payload
             }
 
-        case ALERT_MESSAGE: 
-            return{
+        case ALERT_MESSAGE:
+            return {
                 ...state,
-                alertData: {...action.payload}
+                alertData: { ...action.payload }
             }
 
-        case ADD_TO_CART_DATA:
-            console.log("reducer: ", action)
-            return{
+        case ADD_TO_CART_DATA: 
+            return {
                 ...state,
+                addToCartUpdater: { ...action.payload }
             }
         default:
             return state

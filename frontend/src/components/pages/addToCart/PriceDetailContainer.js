@@ -1,8 +1,6 @@
-import React, { useEffect, useState } from 'react';
 import AboutPriceDiv from './innerComponents/price-details/AboutPriceDiv';
 import PriceHeading from './innerComponents/price-details/PriceHeading';
 import axios from 'axios';
-import { addToCartUpdater } from '../../../redux/action/action';
 import { useDispatch } from 'react-redux';
 
 
@@ -20,14 +18,14 @@ export const fetchApiHandler = async (dispatch) => {
         data.forEach((item, ind) => {
             // collecting total amount of items
             total += item.price * item.quantity;
-            // collecting discountAmount and here is 45% off discount 
+            // collecting all items discountAmount and here is 45% off discount to each products
             discountAmount += (item.price * (45 / 100)) * item.quantity;
         });
-        // calling dispatch function
-        dispatch(addToCartUpdater({ total, discountAmount, data }))
+        // calling dispatch function 
+        dispatch({ type: "ADD_TO_CART_DATA", payload: { total, discountAmount, data } });
 
-    } catch (err) { // this catch method will catch error in above code
-        //  addToCartUpdater({message: "success"})
+
+    } catch (err) { // this catch method will catch error in above code 
         console.log(err);
         alert(err);
     }
@@ -35,18 +33,12 @@ export const fetchApiHandler = async (dispatch) => {
 
 
 const PriceDetailContainer = ({ width }) => {
-    // extracting dispatch function 
+    // get dispatch function 
     const dispatch = useDispatch();
     // It will responsive to content as device change
     width = width < 992 ? "100%" : "30%";
-    // creating an object state variable
-    const [apiData, setApiData] = useState([]);
-    // creating price and discount controller variable
-    const [pricesHandler, setPricesHandler] = useState({});
-    // it will fetch api after the DOM render
-    useEffect(() => {
-        fetchApiHandler(dispatch);
-    }, []);
+    // calling fetchApiHandler function and taking dispatch function as argument
+    fetchApiHandler(dispatch);
 
     return (
         <>
@@ -54,7 +46,7 @@ const PriceDetailContainer = ({ width }) => {
                 className="bg-light align-self-start my-5"
                 style={{ width: width }}>
                 <PriceHeading />
-                <AboutPriceDiv pricesHandler={pricesHandler} apiData={apiData} />
+                <AboutPriceDiv />
             </div>
         </>
     )
