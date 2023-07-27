@@ -1,4 +1,5 @@
-import { ALERT_MESSAGE, BUY_PRODUCTS, CATEGORY_DATA, DELETE_ITEM } from "../type"
+import axios from "axios"
+import { ADD_TO_CART_DATA, ALERT_MESSAGE, BUY_PRODUCTS, CATEGORY_DATA, DELETE_ITEM } from "../type"
 
 // delete data handler action
 export const deleteData = (data) => {
@@ -11,7 +12,7 @@ export const deleteData = (data) => {
 }
 
 // category data handler action 
-export const productCategory = (data)=>{
+export const productCategory = (data) => {
     // console.log("categroy action: ", data)
     return {
         type: CATEGORY_DATA,
@@ -20,22 +21,32 @@ export const productCategory = (data)=>{
 }
 
 // buy products data handler action
-export const buyProducts = (data)=>{
+export const buyProducts = (data) => {
     // console.log("buy_products action: ",data );
-    return{
+    return {
         type: BUY_PRODUCTS,
-        payload:data
+        payload: data
     }
 }
 
 // alert and success message for when user will click remove and savelater button
-export const alertMessageAction = (data) =>{
+export const alertMessageAction = (data) => {
     // console.log("alert action: ", data);
     return {
         type: ALERT_MESSAGE,
         payload: data
     }
 }
- 
+
+// add to cart price details updater function
+export const addToCartUpdater = (id) => {
+    console.log("action: ", id);
+    return {
+        type: ADD_TO_CART_DATA,
+        payload: id
+    }
+
+}
+
 
 

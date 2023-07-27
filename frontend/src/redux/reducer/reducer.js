@@ -1,10 +1,11 @@
-import { DELETE_ITEM, CATEGORY_DATA, BUY_PRODUCTS, ALERT_MESSAGE } from "../type";
+import { DELETE_ITEM, CATEGORY_DATA, BUY_PRODUCTS, ALERT_MESSAGE, ADD_TO_CART_DATA } from "../type";
 
 const initialState = {
     deletesData: {},
     categoryData: [],
     buyProducts: [],
-    alertData:{}
+    alertData:{},
+    addToCartUpdater:{}
 };
 
 const reducer = (state = initialState, action) => {
@@ -34,6 +35,12 @@ const reducer = (state = initialState, action) => {
             return{
                 ...state,
                 alertData: {...action.payload}
+            }
+
+        case ADD_TO_CART_DATA:
+            console.log("reducer: ", action)
+            return{
+                ...state,
             }
         default:
             return state

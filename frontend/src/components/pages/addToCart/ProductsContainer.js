@@ -9,6 +9,7 @@ import { alertMessageAction } from '../../../redux/action/action';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import SaveLater from './SaveLater';
+import { fetchApiHandler } from './PriceDetailContainer';
 
 // this function takes alert message data and dispatch function as parameter
 export const dispatchHandler = (data, dispatch) => {
@@ -51,7 +52,7 @@ const ProductsContainer = ({ width }) => {
         } catch (err) {
             // It will catch error 
             console.log("Error: ", err);
-            alert(err);
+            alert("apiHand:-" + err);
         }
     }
 
@@ -59,7 +60,10 @@ const ProductsContainer = ({ width }) => {
     const itemsCountHandler = async (endpoint, data) => {
         try {
             const response = await axios.put("http://localhost:5000" + endpoint + data._id);
+            // this function will call and reload the data
             apiHandler();
+            // this function will call and reload the priceDetailContainer component's data
+            fetchApiHandler(dispatch);
         } catch (err) {
             console.log("err: ", err);
             alert(err);
@@ -74,12 +78,18 @@ const ProductsContainer = ({ width }) => {
             // Api delete request
             const result = await axios.delete('http://localhost:5000/delete-items/' + itemID + "/" + userID);
             if (result.status === 200) {
+                // this function will call and reload the data
                 apiHandler();
+                // creating message and calling dipatchHandler function for show message 
                 const alertData = {
                     isRemove: true,
                     message: "Successfully removed!"
                 }
                 dispatchHandler(alertData, dispatch);
+                // this function will call and reload the priceDetailContainer component's data
+                fetchApiHandler(dispatch);
+                // this function calling for get all data which is kept for 'save for later' in database
+                saveLaterApiHandler();
             }
         } catch (err) {
             alert(err);
@@ -89,23 +99,28 @@ const ProductsContainer = ({ width }) => {
     // savelater button's function handler
     const saveLaterHandler = async (currentItem) => {
         try {
-            // creating new properties name is saveLater
+            // creating new properties name is saveLater and removing _id key
             currentItem.saveLater = "saveLater";
             delete currentItem._id;
             await axios.post("http://localhost:5000/save-later-products", currentItem);
+            // this function will call and reload the data
             apiHandler();
+            // creating message and calling dipatchHandler function for show message 
             const alertData = {
                 isRemove: true,
                 message: "Successfully Added!"
             }
             dispatchHandler(alertData, dispatch);
+            // this function will call and reload the priceDetailContainer component's data
+            fetchApiHandler(dispatch);
+            // this function calling for get all data which is kept for 'save for later' in database
             saveLaterApiHandler();
         } catch (err) {
-            alert(err);
+            alert("Error in savelater handler" + err);
         }
     }
 
-    // get api it will fetch all data which is saved for save for later
+    // This function will fetch all data which is saved for save for later
     const saveLaterApiHandler = async () => {
         try {
             let userData = JSON.parse(localStorage.getItem("user"));
@@ -119,7 +134,7 @@ const ProductsContainer = ({ width }) => {
                 navigate('/login');
             }
         } catch (err) {
-            alert(err);
+            alert("Products Error" + err);
         }
     }
 
@@ -130,33 +145,38 @@ const ProductsContainer = ({ width }) => {
             delete data.__v
             delete data.saveLater
             await axios.post('http://localhost:5000/add-to-buyer-items/', data);
+            // this function will call and reload the data
+            apiHandler();
+            // creating message and calling dipatchHandler function for show message 
             const alertData = {
                 isRemove: true,
                 message: "Successfully Added!"
             }
             dispatchHandler(alertData, dispatch);
-            apiHandler();
+            // this function will call and reload the priceDetailContainer component's data
+            fetchApiHandler(dispatch);
+            // this function calling for get all data which is kept for 'save for later' in database
             saveLaterApiHandler();
         } catch (err) {
             alert(err);
         }
     }
 
-    // This api request function delete data from 'save for later' list
-    const removeFunc = async (data) => {
-        try {
-            const { userID, itemID } = data;
-            await axios.delete('http://localhost:5000/delete-items/' + itemID + "/" + userID);
-            const alertData = {
-                isRemove: true,
-                message: "Successfully removed!"
-            }
-            dispatchHandler(alertData, dispatch);
-            saveLaterApiHandler();
-        } catch (err) {
-            alert(err);
-        }
-    }
+    // // This api request function delete data from 'save for later' list
+    // const removeFunc = async (data) => {
+    //     try {
+    //         const { userID, itemID } = data;
+    //         await axios.delete('http://localhost:5000/delete-items/' + itemID + "/" + userID);
+    //         const alertData = {
+    //             isRemove: true,
+    //             message: "Successfully removed!"
+    //         }
+    //         dispatchHandler(alertData, dispatch);
+    //         saveLaterApiHandler();
+    //     } catch (err) {
+    //         alert(err);
+    //     }
+    // }
 
     // calling to the apiHandler function
     useEffect(() => {
@@ -189,7 +209,7 @@ const ProductsContainer = ({ width }) => {
                 }
             </div>
             {userData.length > 0 && <OrderBtn />}
-            <SaveLater saveLaterArr={saveLaterArr} addToCartFunc={addToCartFunc} removeFunc={removeFunc} />
+            <SaveLater saveLaterArr={saveLaterArr} addToCartFunc={addToCartFunc} removeFunc={removeHandler} />
         </div>
     )
 }
