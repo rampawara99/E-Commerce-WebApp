@@ -26,6 +26,7 @@ const reducer = (state = initialState, action) => {
             }
 
         case BUY_PRODUCTS:
+            console.log("buy_products...")
             return {
                 ...state,
                 buyProducts: action.payload
@@ -37,12 +38,12 @@ const reducer = (state = initialState, action) => {
                 alertData: { ...action.payload }
             }
 
-        case ADD_TO_CART_DATA: 
+        case ADD_TO_CART_DATA:  
             return {
                 ...state,
                 addToCartUpdater: { ...action.payload }
             }
-        default:
+        default: 
             return state
     }
 }

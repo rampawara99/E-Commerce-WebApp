@@ -9,15 +9,15 @@ const Products = ({ data }) => {
     const clickHandler = (item) => {
         const value = {
             from: "shop",
-            ...data
+            ...item
         }
+        // navigating to detailcomponents
         navigate('/viewdetails', { state: value });
-        // console.log("clickHandler: ", item);
     }
 
     return (
         <div
-            className='shoping-cart d-flex flex-column justify-content-between mx-2 my-2'>
+            className='shoping-cart d-flex flex-column justify-content-between mx-2 my-2 cursor-pointer'>
             <div
                 className='w-100 overflow-hidden bg-success position-relative'>
                 <img

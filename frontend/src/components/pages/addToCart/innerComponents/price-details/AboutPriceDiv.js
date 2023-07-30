@@ -17,7 +17,7 @@ const AboutPriceDiv = () => {
             <div
                 className='my-4 d-flex justify-content-between'>
                 <span>Discount</span>
-                <span className='text-success'>-${Math.trunc(discountAmount)}</span>
+                <span className='text-success'>-${Math.trunc(discountAmount)} Off</span>
             </div>
             <div
                 className='my-4 d-flex justify-content-between'>

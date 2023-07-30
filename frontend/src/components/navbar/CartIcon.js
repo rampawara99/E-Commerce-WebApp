@@ -1,16 +1,13 @@
-import React from 'react'
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom'
 
 const CartIcon = () => {
-    const state = useSelector((item)=> item.buyProducts);
-
-    console.log("catIcon: ", state)
-
+    // get redux store state
+    const { data } = useSelector((item) => item.addToCartUpdater);
     // When user will click to icon it will redirect to AddTocard Page
     const navigat = useNavigate();
     const cartHandler = async () => {
-        navigat('addtocart')
+        navigat('/addtocart')
     }
 
     return (
@@ -21,7 +18,7 @@ const CartIcon = () => {
                 className="bi bi-cart4 text-light fs-3 cursor-pointer position-relative">
                 <span
                     className="position-absolute cart badge rounded-pill bg-danger">
-                    {state.length}
+                    {data.length}
                 </span></i>
         </div>
     )

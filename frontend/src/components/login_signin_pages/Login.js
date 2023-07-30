@@ -48,7 +48,7 @@ const Login = () => {
                 message: "Successefully login!"
             }
             alertHandler(alert);
-            navigate('/shop'); 
+            navigate('/'); 
         } catch (error) {
             const alert = {
                 alert: true,

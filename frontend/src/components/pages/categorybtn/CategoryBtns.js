@@ -1,19 +1,20 @@
 import React from 'react'
-import {useDispatch} from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { productCategory } from '../../../redux/action/action';
 import axios from 'axios';
+import Heading from './Heading';
 
 const CategoryBtns = () => {
 
     // get dispatch function
     const dispatch = useDispatch();
-    
+
     // get api handler for the update categories
-    const apiHanadler = async(key)=>{
-        try{
+    const apiHanadler = async (key) => {
+        try {
             const result = await axios.get("http://localhost:5000/categorysApi/" + key);
             dispatch(productCategory(result.data));
-        }catch(err){
+        } catch (err) {
             console.log(err);
             dispatch(productCategory([]));
         }
@@ -21,6 +22,7 @@ const CategoryBtns = () => {
 
     const generalHandler = () => {
         console.log("general..")
+        dispatch(productCategory([]));
     }
 
     const ladiesHandler = () => {
@@ -40,7 +42,7 @@ const CategoryBtns = () => {
 
     return (
         <div className='mb-4 container-xl container-fluid'>
-            {/* <h1 className='h4 mb-3'>Category</h1> */}
+            <Heading/>
             <div>
                 <button
                     onClick={generalHandler}

@@ -1,19 +1,22 @@
 import React from 'react'
 import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
 
 const LoginBtn = () => {
     // navigate handler
     const navigate = useNavigate();
+    // get dispatch function 
+    const dispatch = useDispatch();
 
     const auth = localStorage.getItem('user');
 
     // logout button handler
     const logOutHandler = () => {
         localStorage.removeItem('user');
+        dispatch({ type: "ADD_TO_CART_DATA", payload: { data: [] } });
         navigate('/login')
     }
-
 
     return (
         <ul className='navbar-nav me-3'>
@@ -21,12 +24,12 @@ const LoginBtn = () => {
                 <>
                     <li>
                         <Link
-                            className='nav-link active nav-login-btn d-inline-block bg-danger me-3 my-2' to='login'>Login
+                            className='nav-link active nav-login-btn d-inline-block me-3 my-2 rounded' to='login'>LogIn
                         </Link>
                     </li>
                     <li>
                         <Link
-                            className='nav-link active nav-login-btn d-inline-block bg-danger my-2' to='signin'>SignIn
+                            className='nav-link active nav-login-btn d-inline-block my-2 rounded' to='signin'>SignIn
                         </Link>
                     </li>
                 </>

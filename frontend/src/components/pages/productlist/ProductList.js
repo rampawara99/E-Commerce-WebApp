@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import CategoryBtns from '../categorybtn/CategoryBtns'
-import Title from '../reusecomponents/Title'
 import axios from 'axios'
-import HoverButton from './HoverButton'
 import Products from './Products'
 import CurrenProductList from './CurrenProductList'
+import Loader from '../reusecomponents/Loader'
 
 
 
@@ -27,8 +26,8 @@ const ProductList = () => {
       // Make HTTP GET request
       const response = await axios.get('http://localhost:5000/product-list');
       // Set the data list state with the response data
+      console.log("resp: ", response);
       setDataList(response.data);
-
       // Set loading state to false
       setMessageHandler({ ...messageHandler, loading: false });
 
@@ -39,6 +38,7 @@ const ProductList = () => {
       }
     } catch (err) {
       // Handle error and loading state
+      console.log("err: ", err)
       setMessageHandler({ ...messageHandler, loading: false, error: err.message });
     }
   }
@@ -52,24 +52,23 @@ const ProductList = () => {
   return (
     <div className='my-5 container-xl container-fluid user-select-none'>
       {/* <Carosel /> */}
-      <Title name="Shop Now" />
       <CategoryBtns />
       <CurrenProductList />
-      <h1 className='container-xl container-fluid h4 mb-3 text-primary'>General List :</h1>
-      {/* <div className='d-flex flex-wrap justify-content-around'> */}
+      <h1 className='container-xl container-fluid h6 mb-3 text-primary'>GENERAL</h1>
+      <hr />
       <div className='d-flex flex-wrap justify-content-around'>
         {dataList.length > 0 &&
           dataList.map((elem, index) => (
             <Products key={elem._id} data={elem} />
           ))
         }
-        {messageHandler.loading && <h5 className='text-center'>Loading...</h5>}
-        {messageHandler.error && <h5 className='text-center'>{messageHandler.error}</h5>}
         <div>
           {messageHandler.empty && <h5 className='text-center text-danger fw-bolder'> 😮Oops!</h5>}
           {messageHandler.empty && <h5 className='text-center text-danger fw-bolder'> Data Not Found</h5>}
         </div>
       </div>
+      {messageHandler.error && <h5 className='text-center'> 😮Oops! {messageHandler.error}</h5>}
+      {messageHandler.loading && <div className='text-center'><Loader /></div>}
 
     </div>
   )

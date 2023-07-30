@@ -15,7 +15,7 @@ const ProductDetails = () => {
     return (
         <div className="container my-5"> 
             <CloseBtn data={data}/>
-            <div className="row p-sm-2">
+            <div className="row p-sm-2 justify-content-center">
                 <ImageControler imgUrl={data.imageUrl} />
                 <DetailsCompiler data={data} />
             </div>

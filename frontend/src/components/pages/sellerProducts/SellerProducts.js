@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import Title from '../reusecomponents/Title'
 import Compiler from './components/Compiler'
 import Alert from './Alert';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { deleteData } from '../../../redux/action/action';
+import Loader from '../reusecomponents/Loader';
 
 const SelerProducts = () => {
 
@@ -47,11 +47,8 @@ const SelerProducts = () => {
     }
 
     useEffect(() => {
-        // Run the effect after the DOM has loaded
-
         // Check if the user is logged in
         let isUserLogin = localStorage.getItem('user');
-
         // If the user is logged in, invoke the ApiHandler function with the user ID
         if (isUserLogin) {
             ApiHandler(JSON.parse(isUserLogin)._id);
@@ -60,14 +57,15 @@ const SelerProducts = () => {
     // Yes alert handler
     const yesHandler = async (data) => {
         // Clear alert message
-        setAlertMessage(undefined); 
+        setAlertMessage(undefined);
 
         try {
             // Make DELETE request to delete the product
-            await axios.delete('http://localhost:5000/deleteProduct/' + data._id); 
+            await axios.delete('http://localhost:5000/deleteProduct/' + data._id);
 
             // Call ApiHandler to update the data
-            ApiHandler(data.userID);
+            ApiHandler(data.sellerID);
+            console.log('delete item: ', data);
 
             // Show success message for delete
             setSuccessMessage(true);
@@ -99,12 +97,11 @@ const SelerProducts = () => {
             <div className='container-xl container-fluid my-4 position-relative'>
                 <div className='row'>
                     {successMessage &&
-                        <div className={`alert alert-success`} role="alert">
+                        <div className='alert alert-success' role="alert">
                             Successfully Deleted
                         </div>
                     }
                     <div className='col-sm-12'>
-                        <Title name="Manage your products"></Title>
                         <div className='d-flex justify-content-center flex-wrap'>
                             {data.length > 0 ?
                                 data.map((elem, num) => {
@@ -126,11 +123,11 @@ const SelerProducts = () => {
                             yesHandler={yesHandler}
                             noHandler={noHandler} />
                     }
-                    {messageHandler.loading && <h5 className='text-center'>Loading...</h5>}
-                    {messageHandler.error && <h5 className='text-center'>{messageHandler.error}</h5>}
-                    <div>
-                        {messageHandler.empty && <h5 className='text-center text-danger fw-bolder'> 😮Oops!</h5>}
-                        {messageHandler.empty && <h5 className='text-center text-danger fw-bolder'> Data Not Found</h5>}
+                    {messageHandler.loading && <Loader/>}
+                    {messageHandler.error && <p className='text-center'>😮Oops!  {messageHandler.error}</p>}
+                    <div className='text-center'>
+                        {messageHandler.empty && <p className='text-danger fw-bolder'> 😮Oops!</p>}
+                        {messageHandler.empty && <p className='text-danger fw-bolder'> You don't have products</p>}
                     </div>
                 </div>
             </div>

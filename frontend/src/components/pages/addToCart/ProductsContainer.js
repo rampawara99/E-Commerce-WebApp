@@ -4,10 +4,9 @@ import DetailsDiv from './innerComponents/shoping-products/DetailsDiv';
 import HeadingDiv from './innerComponents/shoping-products/HeadingDiv';
 import OrderBtn from './innerComponents/OrderBtn';
 import axios from 'axios';
-import Loader from './Loader';
+import Loader from '../reusecomponents/Loader';
 import { alertMessageAction } from '../../../redux/action/action';
-import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux'; 
 import SaveLater from './SaveLater';
 import { fetchApiHandler } from './PriceDetailContainer';
 
@@ -26,9 +25,7 @@ export const dispatchHandler = (data, dispatch) => {
 const ProductsContainer = ({ width }) => {
 
     // get dispatch funtion from useDispatch
-    const dispatch = useDispatch()
-    // extracting navigate function for navigate
-    const navigate = useNavigate();
+    const dispatch = useDispatch() 
     // state management variables 
     const [userData, setUserData] = useState([]);
     // state variable for the loader icon handle
@@ -42,31 +39,35 @@ const ProductsContainer = ({ width }) => {
         try {
             setLoaderHandler(true);
             // extracting user id to get all buyer items from database
-            const { _id } = JSON.parse(localStorage.getItem('user'));
+            const userData = JSON.parse(localStorage.getItem('user'));
 
-            // get requests for the get all selected items by buyer
-            const response = await axios.get('http://localhost:5000/buyer-items/' + _id);
-            // adding response to the userData state variable for the display data
-            setUserData(response.data);
-            setLoaderHandler(false);
+            if (userData) {
+                // get requests for the get all selected items by buyer
+                const response = await axios.get('http://localhost:5000/buyer-items/' + userData._id);
+                // adding response to the userData state variable for the display data
+                setUserData(response.data);
+                setLoaderHandler(false);
+            } else {
+                setLoaderHandler(false);
+            }
         } catch (err) {
-            // It will catch error 
-            console.log("Error: ", err);
+            // It will catch error  
             alert("apiHand:-" + err);
+            setLoaderHandler(false);
         }
     }
 
     // items increase and decrease handler function
     const itemsCountHandler = async (endpoint, data) => {
         try {
-            const response = await axios.put("http://localhost:5000" + endpoint + data._id);
+            await axios.put("http://localhost:5000" + endpoint + data._id);
             // this function will call and reload the data
             apiHandler();
             // this function will call and reload the priceDetailContainer component's data
             fetchApiHandler(dispatch);
         } catch (err) {
             console.log("err: ", err);
-            alert(err);
+            alert("itemsCounterHandler: ", err);
         }
     }
 
@@ -116,7 +117,7 @@ const ProductsContainer = ({ width }) => {
             // this function calling for get all data which is kept for 'save for later' in database
             saveLaterApiHandler();
         } catch (err) {
-            alert("Error in savelater handler" + err);
+            console.log("saveLaterHandler: ", err);
         }
     }
 
@@ -129,12 +130,10 @@ const ProductsContainer = ({ width }) => {
                 // then api request will send for the items save to save for later list
                 const result = await axios.get('http://localhost:5000/savelater-items/' + userData._id + '/saveLater');
                 setSaveLaterArr(result.data);
-            } else { // if user is not login then user will redirect to the login page
-                alert("Please create a account or LogIn!");
-                navigate('/login');
             }
         } catch (err) {
-            alert("Products Error" + err);
+            console.log("SaveLaterApiHandler: ", err);
+            alert(err);
         }
     }
 
@@ -158,25 +157,9 @@ const ProductsContainer = ({ width }) => {
             // this function calling for get all data which is kept for 'save for later' in database
             saveLaterApiHandler();
         } catch (err) {
-            alert(err);
+            alert("addToCartFunc: ", err);
         }
     }
-
-    // // This api request function delete data from 'save for later' list
-    // const removeFunc = async (data) => {
-    //     try {
-    //         const { userID, itemID } = data;
-    //         await axios.delete('http://localhost:5000/delete-items/' + itemID + "/" + userID);
-    //         const alertData = {
-    //             isRemove: true,
-    //             message: "Successfully removed!"
-    //         }
-    //         dispatchHandler(alertData, dispatch);
-    //         saveLaterApiHandler();
-    //     } catch (err) {
-    //         alert(err);
-    //     }
-    // }
 
     // calling to the apiHandler function
     useEffect(() => {

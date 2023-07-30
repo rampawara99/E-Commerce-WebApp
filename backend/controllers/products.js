@@ -64,10 +64,10 @@ export const deleteItem = async (req, res) => {
 
 
 export const productList = async (req, res) => {
-    console.log('productList...');
     try {
         const result = await ProductModel.find();
         // console.log(result)
+        // console.log('productList...', result);
         res.status(201).json(result);
     } catch (err) {
         res.status(401).json({ message: "Server Problem 401!" });
@@ -81,7 +81,7 @@ export const categoryApi = async (req, res) => {
 
         // Perform validation to ensure the category key is provided and valid
         if (!key) {
-            return res.status(400).send('Category key is required');
+            return res.status(400).send('Not Found!');
         }
 
         // Retrieve products from the database based on the category key
