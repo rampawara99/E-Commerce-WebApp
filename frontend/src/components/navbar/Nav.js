@@ -10,7 +10,7 @@ const Nav = () => {
     return (
         <>
             <AlertMessage/>
-            <nav className="navbar bg-primary navbar-expand-lg" data-bs-theme="dark">
+            <nav className="px-0 py-0 navbar bg-primary navbar-expand-lg" data-bs-theme="dark">
                 <div className="container position-relative">
                     <div className="d-flex">
                         <Logo />

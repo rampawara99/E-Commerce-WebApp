@@ -1,10 +1,9 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import axios from 'axios';
+import Carosel from './Carousel';
 
 const Home = () => {
-    // const state = useSelector((data) => data);
-    // console.log("home: ", state);
     // get dispatch function
     const dispatch = useDispatch();
     // check old user's items selected or not 
@@ -26,7 +25,9 @@ const Home = () => {
 
 
     return (
-        <div>Home</div>
+        <div id='#'>
+            <Carosel/>
+        </div>
     )
 }
 

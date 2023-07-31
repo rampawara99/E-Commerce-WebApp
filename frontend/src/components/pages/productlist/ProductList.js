@@ -54,7 +54,7 @@ const ProductList = () => {
       {/* <Carosel /> */}
       <CategoryBtns />
       <CurrenProductList />
-      <h1 className='container-xl container-fluid h6 mb-3 text-primary'>GENERAL</h1>
+      <h1 className='container-xl container-fluid h6 mb-3 text-primary'>GENERAL CATEGORY</h1>
       <hr />
       <div className='d-flex flex-wrap justify-content-around'>
         {dataList.length > 0 &&

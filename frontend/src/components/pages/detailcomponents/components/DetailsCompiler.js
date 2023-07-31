@@ -48,7 +48,7 @@ const DetailsCompiler = ({ data }) => {
 
     return (
 
-        <div className='col-lg-5 my-3'>
+        <div className='col-lg-5 my-3 ps-4'>
             <Title name="About" />
             <div className='lh-lg'>
                 <Name data={data} />

@@ -22,7 +22,7 @@ const Products = ({ data }) => {
                 className='w-100 overflow-hidden bg-success position-relative'>
                 <img
                     src={data.imageUrl}
-                    className='d-inline-block w-100'
+                    className='d-inline-block w-100 img-scale-1'
                     alt="..." />
                 <HoverButton data={data} clickHandler={clickHandler} />
             </div>
