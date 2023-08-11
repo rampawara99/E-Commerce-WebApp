@@ -3,7 +3,7 @@ import cors from 'cors';
 import fileUpload from 'express-fileupload';
 import Router from "./routers/router.js";
 // import dotenv from 'dotenv';
-import connectDB from './db.js';
+import connectDB from './db/db.js';
 // dotenv.config();
 const app = express();
 
