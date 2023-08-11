@@ -32,13 +32,6 @@ Router.post('/save-later-products', saveLaterProducts);
 Router.delete('/delete-items/:_id/:key', deteleBuyerItems);
 
 
-// saving data to database 
-const saveData = () => {
-    console.log("function called");
-}
-
-saveData()
-
 export default Router;
 
 
