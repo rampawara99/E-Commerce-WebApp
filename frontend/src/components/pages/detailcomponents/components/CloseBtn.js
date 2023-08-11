@@ -15,7 +15,7 @@ const CloseBtn = ({data}) => {
             className='text-end px-5 pt-2'>
             <span
                 className='btn btn-sm bg-primary text-light'
-                onClick={clickHandler}>Close
+                onClick={clickHandler}>Go Back
             </span>
         </div>
     )

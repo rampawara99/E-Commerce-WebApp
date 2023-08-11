@@ -2,6 +2,9 @@ import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import axios from 'axios';
 import Carosel from './Carousel';
+import Man from './Man';
+import Ladies from './Ladies'
+import Children from './Children';
 
 const Home = () => {
     // get dispatch function
@@ -25,8 +28,13 @@ const Home = () => {
 
 
     return (
-        <div id='#'>
-            <Carosel/>
+        <div
+            className='user-selector'
+            id='#'>
+            <Carosel />
+            <Man />
+            <Ladies />
+            <Children />
         </div>
     )
 }

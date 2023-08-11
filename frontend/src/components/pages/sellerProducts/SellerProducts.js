@@ -30,8 +30,7 @@ const SelerProducts = () => {
             // Set loading state to true
             setMessageHandler({ ...messageHandler, loading: true });
             const url = 'http://localhost:5000/seller-products/' + id;
-            const response = await axios.get(url);
-            // console.log("resP: ", response.data);
+            const response = await axios.get(url); 
             setData(response.data);
             // Set loading state to false
             setMessageHandler({ ...messageHandler, loading: false });
@@ -64,8 +63,7 @@ const SelerProducts = () => {
             await axios.delete('http://localhost:5000/deleteProduct/' + data._id);
 
             // Call ApiHandler to update the data
-            ApiHandler(data.sellerID);
-            console.log('delete item: ', data);
+            ApiHandler(data.sellerID); 
 
             // Show success message for delete
             setSuccessMessage(true);
@@ -102,7 +100,8 @@ const SelerProducts = () => {
                         </div>
                     }
                     <div className='col-sm-12'>
-                        <div className='d-flex justify-content-center flex-wrap'>
+                        <h1 className='my-5 h4 text-primary text-center py-4 py-3 bg-light rounded'>Manage your products😀</h1>
+                        <div className='d-flex justify-content-center flex-wrap gap-4'>
                             {data.length > 0 ?
                                 data.map((elem, num) => {
                                     return (

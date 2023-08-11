@@ -8,8 +8,7 @@ import CarouselContent from './CarouselContent';
 const Carosel = () => {
 
     // create a array of image's path for slide
-    const arr = [img1, img3, img4, img5];
-    console.log(arr);
+    const arr = [img1, img3, img4, img5]; 
 
     return (
         <div className='row'>

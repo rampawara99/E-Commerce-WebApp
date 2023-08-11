@@ -3,7 +3,7 @@ import React from 'react'
 const Address = () => {
     return (
         <div className="col-lg-3 col-md-6 mb-5">
-            <h3 className="mb-4">Get In Touch</h3>
+            <h3 className="mb-4">CONTACT US</h3>
             <div className="d-flex">
                 <h4 className="fa fa-map-marker-alt text-light"></h4>
                 <div className="px-3">

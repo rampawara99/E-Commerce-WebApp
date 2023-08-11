@@ -1,7 +1,7 @@
 import React from 'react' 
 import Logo from './Logo'
 import Address from './Address'
-import NavBtn from './NavBtn'
+import AboutUs from './AboutUs'
 import Mail from './Mail'
 
 const Details = () => {
@@ -11,7 +11,7 @@ const Details = () => {
                 <div className="row pt-5">
                     <Logo/>
                     <Address/>
-                    <NavBtn/>
+                    <AboutUs/>
                     <Mail/>
                 </div>
             </div>

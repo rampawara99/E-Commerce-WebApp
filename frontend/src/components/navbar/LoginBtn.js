@@ -34,15 +34,16 @@ const LoginBtn = () => {
                     </li>
                 </>
                 :
-                <li>
+                <li id='perso-icon'>
+                    <i className="bi bi-person-fill text-light h4 mt-4"></i>
                     <span
                         className='nav-link active d-inline-block my-2'>
                         <span className='me-3'>( {JSON.parse(auth).firstName} )</span>
-                        <span
-                            onClick={logOutHandler}
-                            className='btn btn-sm btn-danger'>
-                            LogOut
-                        </span>
+                    </span>
+                    <span
+                        onClick={logOutHandler}
+                        className='btn btn-sm btn-danger'>
+                        LogOut
                     </span>
                 </li>
             }

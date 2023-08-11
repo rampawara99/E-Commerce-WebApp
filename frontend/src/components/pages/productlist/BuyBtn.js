@@ -6,7 +6,7 @@ const BuyBtn = ({ data, clickHandler }) => {
         <div
             className='buy-button'
             onClick={() => clickHandler(data)}>
-            <span className='fw-bold text-light'>Add to cart</span> 
+            <span className='fw-bold text-warning'>${data.price}</span> 
         </div>
     )
 }

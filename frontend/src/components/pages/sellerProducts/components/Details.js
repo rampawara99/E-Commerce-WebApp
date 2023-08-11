@@ -15,7 +15,7 @@ const Details = ({name, price, detail}) => {
 
         <div>
           {/* <span className='fw-bold text-muted text-decoration-line-through'> $400</span> */}
-          <span className='fw-bold mx-3'>${price}</span>
+          <span className='fw-bold'>${price}</span>
           {/* <span className='text-dangertext-success'>- 40% Off</span> */}
         </div>
       </div>

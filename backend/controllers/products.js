@@ -95,4 +95,18 @@ export const categoryApi = async (req, res) => {
     }
 };
 
+// This api controller will return limited data
+export const limitedProduct = async (req, res)=>{
+    try{
+        // get key value
+        const {key} = req.params;
+        const result = await ProductModel.find({category:key}).limit(4);
+        res.send(result);
+    }
+    catch(err){
+        res.status(401).send({message:"401 Error Occurred!"});
+    }
+
+} 
+
 

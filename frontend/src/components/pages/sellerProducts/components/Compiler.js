@@ -8,7 +8,7 @@ const Compiler = ({ data, deleteHandler }) => {
   // console.log("compiler: ", data)
 
   return (
-    <div className='shadows ms-1 mt-2'
+    <div className='shadows rounded ms-1 mt-2'
       style={{ width: "400px" }}>
       <Image imagePath={data.imageUrl} />
 

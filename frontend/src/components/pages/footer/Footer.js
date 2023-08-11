@@ -21,10 +21,10 @@ const Footer = () => {
                     <h1>
                         <span
                             style={{ ...style, color: "fff" }}
-                            className='text-light'>Made By </span>
+                            className='text-light fs-6'>Made By </span>
                         <span
                             style={style}
-                            className='text-warning'>
+                            className='text-warning fs-5'>
                             Kusaram Pawara
                         </span>
                     </h1>
